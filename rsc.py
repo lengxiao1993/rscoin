@@ -325,7 +325,7 @@ def main():
                     reactor.stop()
         
         for _ in threads:
-            play_another_song(None)
+            play_another_song(None, cores)
 
         t0 = default_timer()
         reactor.run()
