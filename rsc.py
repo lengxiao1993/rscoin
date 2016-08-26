@@ -296,29 +296,28 @@ def main():
     elif args.play:
 
         threads = [ None ] * args.conn
-        global cores
         cores = []
 
         for core in file(args.play[0]):
             c = core.strip().split()
             cores += [ c ]
 
-        def play_another_song(var):
+        def play_another_song(var, cores):
             if var is not None and (not isinstance(var, float) or not isinstance(var, float)):
                 print "ERROR", var                
 
             if cores != []:
                 c = cores.pop()
                 d = play(c, directory)
-                d.addCallback(play_another_song)
+                d.addCallback(play_another_song, cores)
 
-                def replay(failure):
+                def replay(failure, cores):
                     print failure
                     cores += [ c ]
 		    
 
-                d.addErrback(replay)
-                d.addErrback(play_another_song)
+                d.addErrback(replay, cores)
+                d.addErrback(play_another_song, cores)
 
             else:
                 threads.pop()
