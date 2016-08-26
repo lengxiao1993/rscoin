@@ -312,8 +312,9 @@ def main():
                 d.addCallback(play_another_song)
 
                 def replay(failure):
+					print failure
                     cores += [ c ]
-		    print failure
+		    
 
                 d.addErrback(replay)
                 d.addErrback(play_another_song)
