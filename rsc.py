@@ -302,22 +302,22 @@ def main():
             c = core.strip().split()
             cores += [ c ]
 
-        def play_another_song(var, cores):
+        def play_another_song(var):
             if var is not None and (not isinstance(var, float) or not isinstance(var, float)):
                 print "ERROR", var                
 
             if cores != []:
                 c = cores.pop()
                 d = play(c, directory)
-                d.addCallback(play_another_song, cores)
+                d.addCallback(play_another_song)
 
-                def replay(failure, cores):
+                def replay(failure):
                     print failure
                     cores += [ c ]
 		    
 
-                d.addErrback(replay, cores)
-                d.addErrback(play_another_song, cores)
+                d.addErrback(replay)
+                d.addErrback(play_another_song)
 
             else:
                 threads.pop()
@@ -325,7 +325,7 @@ def main():
                     reactor.stop()
         
         for _ in threads:
-            play_another_song(None, cores)
+            play_another_song(None)
 
         t0 = default_timer()
         reactor.run()
