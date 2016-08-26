@@ -296,7 +296,7 @@ def main():
     elif args.play:
 
         threads = [ None ] * args.conn
-        cores = []
+        global cores = []
 
         for core in file(args.play[0]):
             c = core.strip().split()
