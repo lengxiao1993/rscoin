@@ -303,8 +303,8 @@ def main():
             cores += [ c ]
             
         def replay(failure):
-                    print failure
-                    cores += [ c ]
+            print failure
+            cores += [ c ]
 
         def play_another_song(var):
             if var is not None and (not isinstance(var, float) or not isinstance(var, float)):
