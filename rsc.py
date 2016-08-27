@@ -302,9 +302,7 @@ def main():
             c = core.strip().split()
             cores += [ c ]
             
-        def replay(failure):
-            print failure
-            cores += [ c ]
+        
 
         def play_another_song(var):
             if var is not None and (not isinstance(var, float) or not isinstance(var, float)):
@@ -314,6 +312,9 @@ def main():
                 c = cores.pop()
                 d = play(c, directory)
                 d.addCallback(play_another_song)
+                
+                def replay(failure):
+                    cores.append(c) 
                 
                 d.addErrback(replay)
                 d.addErrback(play_another_song)
