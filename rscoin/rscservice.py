@@ -150,7 +150,7 @@ class RSCProtocol(LineReceiver):
         if not res:
             self.sendLine("NOTOK" )
             return
-
+        print "Query OK"
         self.sendLine("OK %s" % self.sign(H))
         return
 
@@ -185,7 +185,7 @@ class RSCProtocol(LineReceiver):
         if not res:
             self.sendLine("NOTOK")
             return
-
+        print "Commit OK"
         h = mainTx.id()
         ret = self.sign(h)
         self.sendLine("OK %s" % ret)
