@@ -315,6 +315,7 @@ def main():
                 
                 def replay(failure):
                     cores.append(c)
+                    print "cores: " + len(cores)
                 
                 d.addErrback(replay)
                 d.addErrback(play_another_song)
