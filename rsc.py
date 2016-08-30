@@ -314,7 +314,7 @@ def main():
                 d.addCallback(play_another_song)
                 
                 def replay(failure):
-                    cores.append(c) 
+                    cores += [c] 
                 
                 d.addErrback(replay)
                 d.addErrback(play_another_song)
