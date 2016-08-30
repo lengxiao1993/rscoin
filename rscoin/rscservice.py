@@ -183,6 +183,7 @@ class RSCProtocol(LineReceiver):
         res = self.factory.process_TxCommit(data)
 
         if not res:
+            print "Not OK"
             self.sendLine("NOTOK")
             return
         print "Commit OK"
